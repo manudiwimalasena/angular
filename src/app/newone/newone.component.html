@@ -1,0 +1,115 @@
+<!-- <section class="content">
+  <div class="content-block">
+    <div>
+      <p-table #dt1
+        [globalFilterFields]="['itemCode', 'itemName', 'stockQty', 'itemImages','contentType','itemUnitPrice','itemSpecialPrice','itemUnit','itemMaxQty','itemMinQty','itemSteps']"
+        [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+              (click)="clear(dt1)"></button>
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                placeholder="Search keyword" />
+            </span>
+            <button type="button" (click)="exportPdf()" pTooltip="PDF" tooltipPosition="bottom">dfdsf</button>
+
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th *ngFor="let item of displayedColumns">{{item}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{ item.itemCode }}</td>
+            <td>{{ item.itemName }}</td>
+            <td>{{ item.stockQty }}</td>
+            <img [src]="item.itemImages[0]?.url" width="200" height="200">
+            <td>{{ item.contentType }}</td>
+            <td>{{ item.itemUnitPrice }}</td>
+            <td>{{ item.itemSpecialPrice }}</td>
+            <td>{{ item.itemUnit }}</td>
+            <td>{{ item.itemMaxQty }}</td>
+            <td>{{ item.itemMinQty }}</td>
+            <td>{{ item.itemSteps }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</section> -->
+
+<section class="content">
+  <div class="content-block">
+    <div class="container">
+      <form [formGroup]="form1">
+        <div>
+          <label for="firstname">First Name:</label>
+          <input type="text" class="form-control" id="fistname" placeholder="Enter first name"
+            formControlName="firstname">
+
+        </div>
+        <div>
+          <label for="lastname">Last Name:</label>
+          <input type="text" class="form-control" id="lastname" placeholder="Enter last name"
+            formControlName="lastname">
+        </div>
+        <div>
+          <label for="address">Address:</label>
+          <input type="text" class="form-control" id="address" placeholder="Enter address" formControlName="address">
+        </div>
+        <div>
+          <label for="gender">Gender:</label>
+          <input type="radio" id="gender" name="gender" value="Male" formControlName="gender">
+          <label for="male">Male</label>
+          <input type="radio" id="gender" name="gender" value="Female" formControlName="gender">
+          <label for="female">FeMale</label>
+        </div>
+        <div>
+          <label for="size">T shirt size:</label>
+          <select name="shirtsize" id="shirtsize" formControlName="shirtsize">
+            <option value="small">S</option>
+            <option value="medium">M</option>
+            <option value="large">L</option>
+            <option value="xl">XL</option>
+            <option value="xxl">XXL</option>
+          </select>
+        </div>
+        <div>
+          <p-table [value]="array2">
+            <ng-template pTemplate="header">
+              <tr>
+                <th *ngFor="let item of columnNames">{{item}}</th>
+              </tr>
+            </ng-template>
+            <ng-template let-ind="rowIndex" pTemplate="body" let-i>
+              <tr>
+                <td>{{ i.firstname }}</td>
+                <td>{{ i.lastname }}</td>
+                <td>{{ i.address }}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.shirtsize}}</td>
+                <div class="mx-auto" style="width: 200px;">
+                  <button type="submit" (click)="print(i)" class="btn btn-primary ">Button</button>
+                </div>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th *ngFor="let item of columnName">{{item}}</th>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div class="mx-auto" style="width: 200px;">
+          <button type="submit" (click)="submit()" class="btn btn-primary  ">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>

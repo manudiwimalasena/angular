@@ -1,0 +1,148 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <form [formGroup]="form">
+        <div>
+          <h1>Create a Good Receipt</h1>
+        </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <label for="grnNumber">GRN Number </label>
+            <input type="text" class="form-control" id="grnNumber" formControlName="grnNumber">
+          </div>
+
+          <div class="col-lg-3">
+            <label> Date</label>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" formControlName="date">
+              <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3 ">
+            <label for="notes">PO Ref / Notes </label>
+            <input type="text" class="form-control" id="notes" formControlName="notes">
+          </div>
+          <div class="col-lg-3 ">
+            <label for="amount"> Amount </label>
+            <input type="text" class="form-control" id="amount" formControlName="amount">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Batch Exp Date</label>
+
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" formControlName="btchExpDate">
+              <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3">
+            <label for="supplier">Supplier</label>
+            <select name="supplier" id="supplier" class="form-control" formControlName="supplier">
+              <option value="localtest">Local Test</option>
+              <option value="demoStore"> Demo Store</option>
+              <option value="electronicStore">Electronic Store</option>
+              <option value="qa">QA</option>
+            </select>
+          </div>
+          <div class="col-lg-3">
+            <label for="location1">Location</label>
+            <select name="location" id="location" class="form-control" formControlName="location">
+              <option value="192HQ"> 192 HQ</option>
+              <option value="demoHQ"> Demo HQ</option>
+              <option value="synoHQ">syno-HQ</option>
+              <option value="m&dHQ">m&d-HQ</option>
+              <option value="talemein-HQ">talemein-HQ</option>
+              <option value="winshilHQ">winshil-HQ</option>
+            </select>
+          </div>
+          <div class="col-lg-3">
+            <label for="transactionType1">Transaction Type</label>
+            <select name="transactionType" id="transactionType" class="form-control" formControlName="transactionType">
+              <option value="192TRN"> 192_TRN</option>
+              <option value="demo_RN"> Demo_TRN</option>
+              <option value="synoTRN">syno_TRN</option>
+              <option value="m&dTRN">m&d-_TRN</option>
+              <option value="talemeinTRN">talemein_TRN</option>
+              <option value="winshilTRN">winshil_TRN</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <label for="item">Item </label>
+            <input type="text" class="form-control" id="item" formControlName="item">
+          </div>
+          <div class="col-lg-3">
+            <label for="qty">Qty </label>
+            <input type="text" class="form-control" id="qty" formControlName="qty">
+          </div>
+          <div class="col-lg-3">
+            <label for="itemCost">Item Cost </label>
+            <input type="text" class="form-control" id="itemCost" formControlName="itemCost">
+          </div>
+          <div class="col-lg-3">
+            <label for="revisedItemCost">Revised Item Cost </label>
+            <input type="text" class="form-control" id="revisedItemCost" formControlName="revisedItemCost">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Item Exp Date</label>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker3" formControlName="itemExpDate">
+              <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+              <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3">
+            <label for="storageBin">Storage Bin</label>
+            <select name="storageBin" id="storageBin" class="form-control" formControlName="storageBin">
+              <option value="bin1"> oo1</option>
+            </select>
+          </div>
+          <div class="col-lg-3 ">
+            <label for="cashAmount">Cash Amount </label>
+            <input type="number" class="form-control" id="cashAmount" formControlName="cashAmount">
+          </div>
+          <div class="col-lg-3">
+            <label for="cardAmount">Card Amount </label>
+            <input type="number" class="form-control" id="cardAmount" formControlName="cardAmount">
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <button type="submit" class="btn btn-primary">Cancel</button>
+          <button type="submit" (click)="add()" class="btn btn-primary  ">Add</button>
+          <button type="submit" (click)="submit()" class="btn btn-primary  ">Save</button>
+        </div>
+
+      </form>
+      <p-table [value]="userDetailsArray">
+        <ng-template pTemplate="header">
+          <tr>
+            <th *ngFor="let item of columnNames">{{item}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{ item.item }}</td>
+            <td>{{item.qty}}</td>
+            <td>{{item.itemCost}}</td>
+            <td>{{item.revisedItemCost}}</td>
+            <td>{{item.itemExpDate}}</td>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th *ngFor="let item of columnNames">{{item}}</th>
+          </tr>
+        </ng-template>
+      </p-table>
+      <!-- <app-breadcrumb [title]="'OptionC'" [items]="['Home']" [active_item]="'Dashboad 2'"></app-breadcrumb> -->
+
+    </div>
+  </div>
+</section>
